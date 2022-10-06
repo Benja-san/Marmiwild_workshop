@@ -10,12 +10,12 @@
         <ul>
             <?php foreach ($recipes as $recipe) : ?>
             <li>
-                <a href="show.php?id=<?= $recipe['id'] ?>">
+                <a href="show?id=<?= $recipe['id'] ?>">
                     <?= $recipe['title'] ?>
                 </a>
             </li>
             <?php endforeach ?>
-            <li><a href="add.php">Add a recipe</a></li>
+            <li><a href="add">Add a recipe</a></li>
         </ul>
     </body>
 </html>

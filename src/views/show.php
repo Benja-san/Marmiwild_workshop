@@ -6,7 +6,7 @@
         <title><?= $recipe['title'] ?></title>
     </head>
     <body>
-        <a href="/">Home</a>
+        <a href="/home">Home</a>
         <h1><?= $recipe['title'] ?></h1>
 
         <div>

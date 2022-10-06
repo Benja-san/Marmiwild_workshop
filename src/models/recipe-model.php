@@ -1,7 +1,5 @@
 <?php 
 
-require_once 'config.php';
-
 function getConnection(): PDO
 {
     $connection = new PDO("mysql:host=" . SERVER . ";dbname=" . DATABASE . ";charset=utf8", USER, PASSWORD);

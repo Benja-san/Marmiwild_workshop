@@ -1,30 +1,3 @@
-<?php
-    if($_POST){
-        $data = [
-            "title" => $_POST["title"],
-            "description" => $_POST["description"]
-        ];
-        $errors = [];
-        $recipe = [];
-        foreach($data as $key => $value){
-            $cleanValue = htmlentities(trim($value));
-            if($cleanValue === ""){
-                $errors[$key] = "please fill the $key field";
-            }
-            if($key === "title" && strlen($cleanValue) > 255){
-                $errors[$key] = "Title too long";
-            }
-            if(!$errors[$key]){
-                $recipe[$key] = $cleanValue;
-            }
-        }
-        if(!$errors){
-            saveRecipe($recipe);
-            header("location: /");
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +8,7 @@
 </head>
 <body>
     <h1>Add a recipe !</h1>
-    <form action="add.php" method="POST">
+    <form action="add" method="POST">
         <div>
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required placeholder="Title of your recipe">
