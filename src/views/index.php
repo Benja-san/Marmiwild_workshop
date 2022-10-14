@@ -11,11 +11,13 @@
             <?php foreach ($recipes as $recipe) : ?>
             <li>
                 <a href="show?id=<?= $recipe['id'] ?>">
-                    <?= $recipe['title'] ?>
+                    <h2><?= $recipe['title'] ?></h2>
                 </a>
+                <a style="color:red" href="delete?id=<?= $recipe['id'] ?>">X</a>
+                <a style="color:yellowgreen" href="edit?id=<?= $recipe['id'] ?>&type=edit">Edit</a>
             </li>
             <?php endforeach ?>
-            <li><a href="add">Add a recipe</a></li>
+            <li><a href="add?&type=add">Add a recipe</a></li>
         </ul>
     </body>
 </html>
