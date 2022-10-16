@@ -1,22 +1,35 @@
 <?php
-require __DIR__ . '/../models/RecipeModel.php';
+
+namespace Marmiwild\App\Controllers;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Marmiwild\App\Models\RecipeModel;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class RecipeController{
     //properties
+    private Environment $twig;
     private RecipeModel $model;
 
     //magical methods
     public function __construct()
-    {
+    { 
+        $loader = new FilesystemLoader(__DIR__ . '/../views/');
+        $this->twig = new Environment($loader);
         $this->model = new RecipeModel();
     }
 
 
-    public function browse(): void
+    public function browse():string
     {
         $recipes = $this->model->getAllRecipes();
+        return $this->twig->render('index.html.twig', [
+            'recipes' => $recipes
+        ]);
 
-        require __DIR__ . '/../views/index.php';
+        //require __DIR__ . '/../views/index.php';
     }
 
     public function checkBrowseRecipeId():void
@@ -29,7 +42,7 @@ class RecipeController{
         }
     }
 
-    public function browseRecipe(int $cleanId): void
+    public function browseRecipe(int $cleanId): string
     {
         $recipe = $this->model->getOneRecipe($cleanId);
         // Database result check
@@ -39,7 +52,10 @@ class RecipeController{
         }
 
         // Generate the web page
-        require __DIR__ . '/../views/show.php';
+       
+        return $this->twig->render('show.html.twig', [
+            'recipe' => $recipe
+        ]);
     }
 
     public function checkForm(array $data): array

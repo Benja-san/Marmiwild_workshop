@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title><?= $recipe['title'] ?></title>
+        <title>{{ recipe.title }}</title>
     </head>
     <body>
         <a href="/home">Home</a>
-        <h1><?= $recipe['title'] ?></h1>
+        <h1>{{ recipe.title }}</h1>
 
         <div>
-            <?= $recipe['description'] ?>
+            {{ recipe.description }}
         </div>
     </body>
 </html>

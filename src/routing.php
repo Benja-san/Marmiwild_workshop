@@ -1,5 +1,7 @@
 <?php
-require __DIR__.'/../src/controllers/RecipeController.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Marmiwild\App\Controllers\RecipeController;
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -9,12 +11,12 @@ switch($urlPath){
         break;
     case "/home" :
         $recipeController = new RecipeController();
-        $recipeController->browse();
+        echo $recipeController->browse();
         break;
     case "/show" :
         $recipeController = new RecipeController();
         $recipeController->checkBrowseRecipeId();
-        $recipeController->browseRecipe($_GET["id"]);
+        echo $recipeController->browseRecipe($_GET["id"]);
         break;
     case "/add" :
         $recipeController = new RecipeController();
