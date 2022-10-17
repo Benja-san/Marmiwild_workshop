@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-    {% block title %}{% endblock %}
-    </title>
-</head>
-<body>
-    <h1>
-        {% block heading %}{% endblock %}
-    </h1>
-    {% block form %}
-        <form action="<?= $formName ?>" method="POST">
-            <input type="hidden" name="type" value="<?= $formName ?>">
-            <?php if(isset($recipeData)) : ?>
-                <input type="hidden" name="id" value="<?= $recipeData["id"] ?>">
-            <?php endif ?>
-            <div>
-                <label for="title">Title</label>
-                <input value="<?= isset($recipeData["title"]) ? $recipeData["title"] : "" ?>" type="text" id="title" name="title" required placeholder="Title of your recipe">
-                <?php if(isset($errors["title"])) : ?>
-                    <p><?= $errors["title"] ?></p>
-                <?php endif ?>
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea id="description" name="description" required placeholder="Description of your recipe"><?= isset($recipeData["description"]) ? $recipeData["description"] : "" ?></textarea>
-                <?php if(isset($errors["description"])) : ?>
-                    <p><?= $errors["description"] ?></p>
-                <?php endif ?>
-            </div>
-            <input type="submit" value="<?= $formName ?>">
-        </form>
-    {% endblock %}
-</body>
-</html>
+{% macro form(action, children, type = "post") %}
+    <form action="{{ action }}" type="{{ type }}">
+        {{ children }}
+    </form>
+{% endmacro %}
+
+{% macro input(title, type, name, id, error, placeholder, value = "") %}
+    <div>
+        <label for="{{ id }}">{{ title }}</label>
+        <input value="{{ value }}" type="{{ type }}" id="{{ id }}" name="{{ name }}" required placeholder="{{ placeholder }}">
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro textarea(title, name, id, error, placeholder, value = "") %}
+    <div>
+        <label for="{{ id }}">{{ title }}</label>
+        <textarea id="{{ id }}" name="{{ name }}" required placeholder="{{ placeholder }}">{{ value }}</textarea>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+{% endmacro %}

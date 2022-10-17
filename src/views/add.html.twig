@@ -1,0 +1,20 @@
+{% import "form.html.twig" as form %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marmiwild : Add a recipe</title>
+</head>
+<body>
+    <h1>add a recipe !</h1>
+    <form method="post">
+        {{ form.input("Title", "text", "title", "title", errors.title, "your name goes here") }}
+        {{ form.textarea("Description", "description", "description", errors.description, "your description goes here") }}
+        <button type="submit">Add recipe</button>
+    </form>
+</body>
+</html>
+

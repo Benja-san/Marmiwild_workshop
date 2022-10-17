@@ -1,0 +1,20 @@
+{% import "form.html.twig" as form %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marmiwild : Edit {{ recipeData.title }} recipe </title>
+</head>
+<body>
+    <h1>Edit {{ recipeData.title }} recipe</h1>
+    <form method="post">
+        <input type="hidden" name="id" value="{{ recipeData.id }}" />
+        {{ form.input("Title", "text", "title", "title", errors.title, "your name goes here", recipeData.title) }}
+        {{ form.textarea("Description", "description", "description", errors.description, "your description goes here", recipeData.description) }}
+        <button type="submit">Edit recipe</button>
+    </form>
+</body>
+</html>

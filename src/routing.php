@@ -20,7 +20,7 @@ switch($urlPath){
         break;
     case "/add" :
         $recipeController = new RecipeController();
-        $recipeController->addRecipe();
+        echo $recipeController->addRecipe();
         break;
     case "/delete" :
         $recipeController = new RecipeController();
@@ -30,7 +30,7 @@ switch($urlPath){
     case "/edit" :
         $recipeController = new RecipeController();
         $recipeController->checkBrowseRecipeId();
-        $recipeController->editRecipe();
+        echo $recipeController->editRecipe();
         break;
     default :
         header('HTTP/1.1 404 Not Found');

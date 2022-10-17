@@ -28,8 +28,6 @@ class RecipeController{
         return $this->twig->render('index.html.twig', [
             'recipes' => $recipes
         ]);
-
-        //require __DIR__ . '/../views/index.php';
     }
 
     public function checkBrowseRecipeId():void
@@ -83,7 +81,7 @@ class RecipeController{
         return $checkedData;
     }
 
-    public function addRecipe(): void
+    public function addRecipe(): string
     {
         if($_POST){
             $data = [
@@ -99,10 +97,14 @@ class RecipeController{
             }
         }
         // Generate the web page
-            require __DIR__ . '/../views/add.php';
+            
+            return $this->twig->render('add.html.twig', [
+                'data' => $data,
+                'errors' => $checkedData['errors']
+            ]);
     }
 
-    public function editRecipe(): void
+    public function editRecipe(): string
     {
         //If I get id in url parameter, I'll retrieve the recipe to edit
         if(isset($_GET["id"])){
@@ -125,7 +127,11 @@ class RecipeController{
             }
         }
         // Generate the web page
-            require __DIR__ . '/../views/edit.php';
+            return $this->twig->render('edit.html.twig', [
+                'data' => $data,
+                'errors' => $checkedData['errors'],
+                'recipeData' => $recipeData
+            ]);
     }
 
     public function deleteRecipe(int $id):void
